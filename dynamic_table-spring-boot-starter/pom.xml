@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>dynamic_table</artifactId>
+        <groupId>com.poo0054</groupId>
+        <version>1.0-Alpha</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dynamic_table-spring-boot-start</artifactId>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <dynamic_table.version>1.0-Alpha</dynamic_table.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.poo0054</groupId>
+            <artifactId>dynamic_table-spring-boot-autoconfigure</artifactId>
+            <version>${dynamic_table.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

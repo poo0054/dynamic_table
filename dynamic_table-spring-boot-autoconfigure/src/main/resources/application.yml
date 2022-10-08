@@ -1,0 +1,13 @@
+server:
+  port: 8100
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.56.10:3306/yidian_oms?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
+    name: root
+    password: root
+
+
+mybatis-plus:
+  type-aliases-package: com.poo0054.**.po

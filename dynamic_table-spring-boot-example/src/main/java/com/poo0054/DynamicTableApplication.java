@@ -1,0 +1,20 @@
+package com.poo0054;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * 启动类
+ *
+ * @author ZhangZhi
+ * @version 1.0
+ * @since 2022/10/8 15:10
+ */
+@MapperScan("com.poo0054.**.mapper")
+@SpringBootApplication
+public class DynamicTableApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(DynamicTableApplication.class, args);
+    }
+}
