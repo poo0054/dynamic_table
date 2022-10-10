@@ -1,4 +1,4 @@
-package com.poo0054;
+package com.poo0054.dynamic;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  * @since 2022/10/8 15:10
  */
-@MapperScan("com.poo0054.**.mapper")
+@MapperScan("com.poo0054.dynamic.**.dao")
 @SpringBootApplication
 public class DynamicTableApplication {
     public static void main(String[] args) {

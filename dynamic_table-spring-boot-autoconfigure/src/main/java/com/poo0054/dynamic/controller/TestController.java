@@ -1,4 +1,4 @@
-package com.poo0054.controller;
+package com.poo0054.dynamic.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

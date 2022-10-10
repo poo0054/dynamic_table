@@ -1,4 +1,4 @@
-package com.poo0054;
+package com.poo0054.dynamic;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -13,8 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @MapperScan("com.poo0054.**.mapper")
 @SpringBootApplication
-public class DynamicTableApplication {
+public class DynamicTableStartApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DynamicTableApplication.class, args);
+        SpringApplication.run(DynamicTableStartApplication.class, args);
     }
 }
