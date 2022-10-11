@@ -30,7 +30,7 @@ public class TableDynamic extends Model<TableDynamic> {
      * 表格值
      */
     private String value;
-    //
+
     /**
      * 表格状态
      */
@@ -83,6 +83,15 @@ public class TableDynamic extends Model<TableDynamic> {
      */
     private Integer sort;
 
+    /**
+     * 是否需要进行查询
+     */
+    private Boolean showSearch;
+
+    /**
+     * 提示语句
+     */
+    private String placeholder;
 
     /**
      * 获取主键值

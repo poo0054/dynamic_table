@@ -15,6 +15,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DynamicTableApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DynamicTableStartApplication.class, args);
+        SpringApplication.run(DynamicTableApplication.class, args);
     }
 }
