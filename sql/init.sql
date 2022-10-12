@@ -35,7 +35,7 @@ create table table_dynamic
     align       varchar(12) null comment '对齐方式',
     sortable    tinyint(1) null comment '是否以该行进行排序',
     filters     varchar(240) null comment 'filters 是一个数组 如果为select 会获取select_url的值',
-    show_search tinyint(1) null comment '是否需要进行查询',
+    show_search tinyint(1) default 0 null comment '是否需要进行查询',
     placeholder varchar(24) null comment '提示语句',
     sort        int null comment '排序'
 ) ENGINE= InnoDB
