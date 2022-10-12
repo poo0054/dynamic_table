@@ -11,3 +11,6 @@ spring:
 
 mybatis-plus:
   type-aliases-package: com.poo0054.**.entity
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID

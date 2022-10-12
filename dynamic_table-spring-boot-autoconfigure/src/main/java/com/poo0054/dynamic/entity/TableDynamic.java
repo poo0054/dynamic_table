@@ -1,5 +1,7 @@
 package com.poo0054.dynamic.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
@@ -13,11 +15,13 @@ import java.io.Serializable;
  */
 @Data
 public class TableDynamic extends Model<TableDynamic> {
+
     private static final long serialVersionUID = 5897204306455302610L;
     /**
      * 主键
      */
-    private Integer id;
+    @TableId(type = IdType.ASSIGN_ID)
+    private String id;
     /**
      * 表格名称
      */

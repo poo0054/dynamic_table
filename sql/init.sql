@@ -1,7 +1,7 @@
 -- auto-generated definition
 create table table_attribute
 (
-    id         int not null comment '主键'
+    id varchar(24) not null comment '主键'
         primary key,
     table_code varchar(24) null comment '表类型',
     name       varchar(24) null comment '名字',
@@ -20,7 +20,7 @@ create table table_attribute
 -- auto-generated definition
 create table table_dynamic
 (
-    id          int not null comment '主键'
+    id varchar(24) not null comment '主键'
         primary key,
     table_code  varchar(24) null comment '表id',
     name        varchar(24) null comment '表格名称',

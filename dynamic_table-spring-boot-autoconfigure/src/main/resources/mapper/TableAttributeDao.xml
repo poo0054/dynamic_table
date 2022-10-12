@@ -6,14 +6,14 @@
         -- auto-generated definition
         create table table_attribute
         (
-            id         int         not null comment '主键'
+            id         varchar(24) not null comment '主键'
                 primary key,
             table_code varchar(24) null comment '表类型',
             name       varchar(24) null comment '名字',
             url        varchar(64) null comment '查询地址',
             url_type   varchar(12) null comment '请求类型',
-            stripe     tinyint(1)  null comment '是否携带斑马纹',
-            border     tinyint(1)  null comment '是否携带边框',
+            stripe     tinyint(1) null comment '是否携带斑马纹',
+            border     tinyint(1) null comment '是否携带边框',
             height     varchar(24) null comment '高度'
         ) ENGINE = InnoDB
           CHARACTER SET = utf8mb4

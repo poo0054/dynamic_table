@@ -1,5 +1,7 @@
 package com.poo0054.dynamic.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
@@ -17,7 +19,8 @@ public class TableAttribute extends Model<TableAttribute> {
     /**
      * 主键
      */
-    private Integer id;
+    @TableId(type = IdType.ASSIGN_ID)
+    private String id;
 
     /**
      * 表类型

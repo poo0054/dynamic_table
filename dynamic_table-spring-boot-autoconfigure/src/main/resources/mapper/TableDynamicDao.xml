@@ -7,7 +7,7 @@
         -- auto-generated definition
         create table table_dynamic
         (
-            id          int not null comment '主键'
+            id          varchar(24) not null comment '主键'
                 primary key,
             table_code  varchar(24) null comment '表id',
             name        varchar(24) null comment '表格名称',
