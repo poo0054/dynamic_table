@@ -38,7 +38,7 @@ public class TableDynamic extends Model<TableDynamic> {
     /**
      * 表格状态
      */
-    private String disabled;
+    private Boolean disabled;
     /**
      * 宽度
      */

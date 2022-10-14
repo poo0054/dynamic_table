@@ -16,16 +16,15 @@ create table table_attribute
   COLLATE = utf8mb4_general_ci
     comment '表属性';
 
-
 -- auto-generated definition
 create table table_dynamic
 (
-    id varchar(24) not null comment '主键'
+    id          varchar(24) not null comment '主键'
         primary key,
     table_code  varchar(24) null comment '表id',
     name        varchar(24) null comment '表格名称',
     value       varchar(24) null comment '表格值',
-    disabled    tinyint(1) null comment '表格状态',
+    disabled    tinyint(1) default 0 null comment '表格状态',
     width       double null comment '宽度',
     fixed       varchar(24) null comment '固定列',
     parent_id   int null comment '父级id',
