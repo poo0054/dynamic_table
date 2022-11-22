@@ -13,13 +13,24 @@
             @click="handleAdd">添加行
         </el-button>
       </div>
+      <dynamic-form
+          :formCode="table_code"
+          :diasicOptions="options"
+          @searchFun="searchFun"
+          :formList="tableDynamics"
+          :tableAttribute="tableAttribute"
+      ></dynamic-form>
+
+      <!-- <el-button @click="$testFun['tableRowClassName']">1234</el-button> -->
 
       <div>
-        <el-table :data="tableDate"
-                  :stripe="tableAttribute.stripe"
-                  :border="tableAttribute.border"
-                  :height="(tableAttribute.height?tableAttribute.height:height) +'px'"
-                  @selection-change="batchSelect">
+        <el-table
+            ref="tableData"
+            :data="tableDate"
+            :stripe="tableAttribute.stripe"
+            :border="tableAttribute.border"
+            :height="(tableAttribute.height?tableAttribute.height:height) +'px'"
+            @selection-change="batchSelect">
           <el-table-column v-if="modify"
                            fixed="left"
                            type="selection"/>
@@ -35,67 +46,11 @@
                            :filter-method="tableDynamic.filters?filterHandler:null"
                            :width="tableDynamic.width+'px'">
             <template slot-scope="scope">
-
-              <!-- input输入框                            -->
-              <span v-if="'input' === tableDynamic.type" :disabled="!modify">
-                                <el-input v-model="scope.row[scope.column.property]"
-                                          :type="tableDynamic.typeType"
-                                          clearable size="medium"/>
-                            </span>
-
-              <!--select下拉框                       -->
-              <span v-else-if="'select' === tableDynamic.type" :disabled="!modify">
-                                <el-select v-if="modify"
-                                           v-model="scope.row[scope.column.property].value">
-                                    <el-option
-                                        v-for="item in options[scope.column.property]"
-                                        :key="item.desc"
-                                        :label="item.desc"
-                                        :value="item.value"/>
-                                </el-select>
-                                <el-select v-model="scope.row[scope.column.property].desc" v-if="!modify"
-                                           :disabled="!modify">
-                                </el-select>
-                            </span>
-
-              <!--time时间                            -->
-              <span v-else-if="'time' === tableDynamic.type" :disabled="!modify">
-                                <el-time-select :disabled="!modify"
-                                                v-model="scope.row[scope.column.property]">
-                                    </el-time-select>
-                            </span>
-
-              <!--date时间                            -->
-              <span v-else-if="'date' === tableDynamic.type" :disabled="!modify">
-                                <div class="block">
-                               <el-date-picker
-                                   v-model="scope.row[scope.column.property]"
-                                   align="right"
-                                   type="date"
-                                   placeholder="选择日期"
-                                   :picker-options="pickerOptions">
-                               </el-date-picker>
-                             </div>
-                            </span>
-
-              <!--dateTime时间                            -->
-              <span v-else-if="'dateTime' === tableDynamic.type" :disabled="!modify">
-                                <div class="block">
-                                    <el-date-picker
-                                        v-model="scope.row[scope.column.property]"
-                                        type="datetime"
-                                        placeholder="选择日期时间"
-                                        align="right"
-                                        :picker-options="pickerOptions">
-                                    </el-date-picker>
-                                  </div>
-                            </span>
-
-              <!--tag 标签 用来过滤                    -->
-              <span v-else-if="'tag' === tableDynamic.type" :disabled="!modify">
-                                <p>tag标签暂不可用</p>
-                            </span>
-
+              <div>
+                <dynamicType :tableDynamic="tableDynamic" :options="options" :modify="modify"
+                             :scopeRow="scope.row">
+                </dynamicType>
+              </div>
             </template>
           </el-table-column>
 
@@ -121,22 +76,17 @@
   </div>
 </template>
 
-<style scoped>
-
-.button {
-  float: right;
-}
-
-</style>
 <script>
 
 //例如：import <组件名称> from '《组件路径》'
 import {GET} from "@/utils/commonFinal";
+import dynamicForm from './dynamicForm.vue'
+import dynamicType from './dynamicType.vue'
 
 export default {
   name: "dynamicTable",
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: {dynamicForm, dynamicType},
   data() {
     //这里存放数据",
     return {
@@ -205,7 +155,7 @@ export default {
   //方法集合
   methods: {
     init() {
-      this.$api.http(GET, 'http://localhost:8100/tableAttribute/tableCode/' + this.table_code).then(res => {
+      this.$api.http(GET, 'http://192.168.0.127:8100/tableAttribute/tableCode/' + this.table_code).then(res => {
         let optionalParams = res.data;
         this.tableAttributes = optionalParams;
 
@@ -224,7 +174,7 @@ export default {
         }
       });
 
-      this.$api.http(GET, 'http://localhost:8100/tableDynamic/tableCode/' + this.table_code).then(res => {
+      this.$api.http(GET, 'http://192.168.0.127:8100/tableDynamic/tableCode/' + this.table_code).then(res => {
         let data = res.data;
         data.sort((tableCode1, tableCode2) => (tableCode1.sort - tableCode2.sort));
         this.tableDynamics = data;
@@ -256,6 +206,7 @@ export default {
           }
         }
       });
+      this.$refs.tableData.doLayout()
     },
 
     /**
@@ -358,15 +309,25 @@ export default {
      */
     cancel() {
       this.$emit('cancel', this.tableDate);
+    },
+    /**
+     * 搜索后的值
+     * @param data
+     */
+    searchFun(data) {
+      this.tableDate = data;
     }
   },
 //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+
     this.init();
   }
 }
 </script>
 
 <style scoped>
-
+.button {
+  float: right;
+}
 </style>
